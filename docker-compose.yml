@@ -7,7 +7,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: postgres
+      POSTGRES_DB: wiki
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
