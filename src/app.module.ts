@@ -13,9 +13,11 @@ import { EpisodeWorldlineModule } from './episode_worldline/episode_worldline.mo
 import { GadgetCharacterModule } from './gadget_character/gadget_character.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
+    DatabaseModule,
     ThrottlerModule.forRoot([
       {
         name: 'short', // The configuration allows up to 3 requests per second.
