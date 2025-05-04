@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { CharactersService } from './characters.service';
 import { CharactersController } from './characters.controller';
+import { DatabaseModule } from 'src/database/database.module';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { Character } from './entities/character.entity';
 
 @Module({
+  imports: [DatabaseModule, SequelizeModule.forFeature([Character])],
   controllers: [CharactersController],
   providers: [CharactersService],
 })
