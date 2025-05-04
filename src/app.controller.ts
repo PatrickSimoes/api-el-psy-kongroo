@@ -1,12 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return [
+      '🚀 Bem-vindo à Steins;Gate Wiki API!',
+      '',
+      '🔧 Para criar, atualizar ou deletar, use os endpoints POST, PUT e DELETE correspondentes.',
+      '⚙️ Divirta-se viajando pelas linhas do tempo!',
+    ].join('\n');
   }
 }
