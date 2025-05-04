@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { CharactersModule } from './characters/characters.module';
 import { EpisodesModule } from './episodes/episodes.module';
@@ -50,7 +49,7 @@ import { APP_GUARD } from '@nestjs/core';
     EpisodeWorldlineModule,
     GadgetCharacterModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
     {
       provide: APP_GUARD,
