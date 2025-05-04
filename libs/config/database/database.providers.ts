@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { ConfigService } from '@nestjs/config';
+import entities from 'src/entities';
 
 export const databaseProviders = [
   {
@@ -7,14 +8,12 @@ export const databaseProviders = [
     useFactory: async (config: ConfigService): Promise<Sequelize> => {
       const dbUrl = config.get<string>('DB_URL');
 
-      const models = [];
-
       let sequelize: Sequelize;
 
       if (dbUrl) {
         sequelize = new Sequelize(dbUrl, {
           dialect: 'postgres',
-          models,
+          models: entities,
         });
       } else {
         sequelize = new Sequelize({
@@ -24,7 +23,7 @@ export const databaseProviders = [
           database: config.get<string>('DB_NAME'),
           username: config.get<string>('DB_USER'),
           password: config.get<string>('DB_PASSWORD'),
-          models,
+          models: entities,
         });
       }
 
