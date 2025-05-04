@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { CharactersModule } from './characters/characters.module';
 import { EpisodesModule } from './episodes/episodes.module';
@@ -13,9 +12,28 @@ import { CharacterLocationModule } from './character_location/character_location
 import { CharacterOrganizationModule } from './character_organization/character_organization.module';
 import { EpisodeWorldlineModule } from './episode_worldline/episode_worldline.module';
 import { GadgetCharacterModule } from './gadget_character/gadget_character.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        name: 'short', // The configuration allows up to 3 requests per second.
+        ttl: 1000,
+        limit: 3,
+      },
+      {
+        name: 'medium', // The configuration allows up 20 requests every 10 seconds.
+        ttl: 10000,
+        limit: 20,
+      },
+      {
+        name: 'long', // The configuration allows up 100 requests per minute.
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env'],
@@ -33,6 +51,11 @@ import { GadgetCharacterModule } from './gadget_character/gadget_character.modul
     GadgetCharacterModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
