@@ -8,7 +8,10 @@ import {
   CreatedAt,
   UpdatedAt,
   DeletedAt,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
+import { Episode } from 'src/episodes/entities/episode.entity';
 
 @Table({ tableName: 'characters', timestamps: true, paranoid: true })
 export class Character extends Model {
@@ -43,4 +46,7 @@ export class Character extends Model {
   @DeletedAt
   @Column({ field: 'deleted_at' })
   declare deletedAt: Date;
+
+  @BelongsToMany(() => Episode, () => CharacterEpisode)
+  episodes: Episode[];
 }

@@ -6,7 +6,10 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
+import { Character } from 'src/characters/entities/character.entity';
 
 @Table({
   tableName: 'episodes',
@@ -21,7 +24,7 @@ export class Episode extends Model<Episode> {
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  title!: string;
+  title: string;
 
   @AllowNull(true)
   @Column(DataType.TEXT)
@@ -29,11 +32,11 @@ export class Episode extends Model<Episode> {
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
-  season!: number;
+  season: number;
 
   @AllowNull(false)
   @Column({ type: DataType.INTEGER, field: 'episode_number' })
-  episodeNumber!: number;
+  episodeNumber: number;
 
   @AllowNull(true)
   @Column({ type: DataType.DATE, field: 'air_date' })
@@ -46,4 +49,7 @@ export class Episode extends Model<Episode> {
   @AllowNull(true)
   @Column({ type: DataType.FLOAT, comment: 'average rating' })
   rating?: number;
+
+  @BelongsToMany(() => Character, () => CharacterEpisode)
+  characters: Character[];
 }
