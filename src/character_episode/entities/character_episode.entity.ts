@@ -1,4 +1,12 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  PrimaryKey,
+  Default,
+} from 'sequelize-typescript';
 import { Character } from 'src/characters/entities/character.entity';
 import { Episode } from 'src/episodes/entities/episode.entity';
 
@@ -7,14 +15,19 @@ import { Episode } from 'src/episodes/entities/episode.entity';
   underscored: true,
   timestamps: true,
 })
-export class CharacterEpisode extends Model {
+export class CharacterEpisode extends Model<CharacterEpisode> {
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column({ type: DataType.UUID })
+  declare id: string;
+
   @ForeignKey(() => Character)
   @Column({
     type: DataType.UUID,
     allowNull: false,
     field: 'character_id',
   })
-  characterId: string;
+  characterId!: string;
 
   @ForeignKey(() => Episode)
   @Column({
@@ -22,5 +35,5 @@ export class CharacterEpisode extends Model {
     allowNull: false,
     field: 'episode_id',
   })
-  episodeId: string;
+  episodeId!: string;
 }
