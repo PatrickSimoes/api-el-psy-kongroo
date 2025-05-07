@@ -1,4 +1,3 @@
-// src/episode-worldline/entities/episode-worldline.entity.ts
 import {
   Table,
   Model,
