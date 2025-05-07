@@ -11,7 +11,9 @@ import {
   BelongsToMany,
 } from 'sequelize-typescript';
 import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
+import { CharacterLocation } from 'src/character_location/entities/character_location.entity';
 import { Episode } from 'src/episodes/entities/episode.entity';
+import { Location } from 'src/locations/entities/location.entity';
 
 @Table({ tableName: 'characters', timestamps: true, paranoid: true })
 export class Character extends Model {
@@ -49,4 +51,7 @@ export class Character extends Model {
 
   @BelongsToMany(() => Episode, () => CharacterEpisode)
   episodes: Episode[];
+
+  @BelongsToMany(() => Location, () => CharacterLocation)
+  locations: Location[];
 }

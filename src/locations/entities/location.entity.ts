@@ -6,7 +6,10 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { CharacterLocation } from 'src/character_location/entities/character_location.entity';
+import { Character } from 'src/characters/entities/character.entity';
 
 @Table({
   tableName: 'locations',
@@ -40,4 +43,7 @@ export class Location extends Model<Location> {
   @AllowNull(true)
   @Column(DataType.FLOAT)
   longitude?: number;
+
+  @BelongsToMany(() => Character, () => CharacterLocation)
+  characters: Character[];
 }
