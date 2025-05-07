@@ -10,6 +10,8 @@ import {
 } from 'sequelize-typescript';
 import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
 import { Character } from 'src/characters/entities/character.entity';
+import { EpisodeWorldline } from 'src/episode_worldline/entities/episode_worldline.entity';
+import { Worldline } from 'src/worldlines/entities/worldline.entity';
 
 @Table({
   tableName: 'episodes',
@@ -52,4 +54,7 @@ export class Episode extends Model<Episode> {
 
   @BelongsToMany(() => Character, () => CharacterEpisode)
   characters: Character[];
+
+  @BelongsToMany(() => Worldline, () => EpisodeWorldline)
+  worldlines: Worldline[];
 }

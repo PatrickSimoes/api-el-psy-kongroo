@@ -6,7 +6,10 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { EpisodeWorldline } from 'src/episode_worldline/entities/episode_worldline.entity';
+import { Episode } from 'src/episodes/entities/episode.entity';
 
 @Table({
   tableName: 'wordlines',
@@ -30,4 +33,7 @@ export class Worldline extends Model {
   @AllowNull(true)
   @Column({ type: DataType.INTEGER, comment: 'nth occurrence in the same line' })
   occurrence?: number;
+
+  @BelongsToMany(() => Episode, () => EpisodeWorldline)
+  episodes: Episode[];
 }
