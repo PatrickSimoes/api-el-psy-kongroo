@@ -13,7 +13,7 @@ import {
   underscored: true,
   timestamps: true,
 })
-export class Wordline extends Model<Wordline> {
+export class Worldline extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
