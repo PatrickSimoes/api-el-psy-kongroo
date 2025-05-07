@@ -6,7 +6,10 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { Character } from 'src/characters/entities/character.entity';
+import { GadgetCharacter } from 'src/gadget_character/entities/gadget_character.entity';
 
 @Table({
   tableName: 'gadgets',
@@ -42,4 +45,7 @@ export class Gadget extends Model<Gadget> {
   @AllowNull(true)
   @Column({ type: DataType.DATE })
   releaseDate?: Date;
+
+  @BelongsToMany(() => Character, () => GadgetCharacter)
+  characters: Character[];
 }

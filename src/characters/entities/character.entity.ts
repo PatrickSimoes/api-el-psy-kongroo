@@ -14,6 +14,8 @@ import { CharacterEpisode } from 'src/character_episode/entities/character_episo
 import { CharacterLocation } from 'src/character_location/entities/character_location.entity';
 import { CharacterOrganization } from 'src/character_organization/entities/character_organization.entity';
 import { Episode } from 'src/episodes/entities/episode.entity';
+import { GadgetCharacter } from 'src/gadget_character/entities/gadget_character.entity';
+import { Gadget } from 'src/gadgets/entities/gadget.entity';
 import { Location } from 'src/locations/entities/location.entity';
 import { Organization } from 'src/organizations/entities/organization.entity';
 
@@ -59,4 +61,7 @@ export class Character extends Model {
 
   @BelongsToMany(() => Organization, () => CharacterOrganization)
   organizations: Organization[];
+
+  @BelongsToMany(() => Gadget, () => GadgetCharacter)
+  gadgets: Gadget[];
 }
