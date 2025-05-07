@@ -6,7 +6,10 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { CharacterOrganization } from 'src/character_organization/entities/character_organization.entity';
+import { Character } from 'src/characters/entities/character.entity';
 
 @Table({
   tableName: 'organizations',
@@ -30,4 +33,7 @@ export class Organization extends Model<Organization> {
   @AllowNull(false)
   @Column(DataType.STRING)
   address: string;
+
+  @BelongsToMany(() => Character, () => CharacterOrganization)
+  characters: Character[];
 }

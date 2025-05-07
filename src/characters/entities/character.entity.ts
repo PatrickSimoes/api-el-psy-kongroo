@@ -12,8 +12,10 @@ import {
 } from 'sequelize-typescript';
 import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
 import { CharacterLocation } from 'src/character_location/entities/character_location.entity';
+import { CharacterOrganization } from 'src/character_organization/entities/character_organization.entity';
 import { Episode } from 'src/episodes/entities/episode.entity';
 import { Location } from 'src/locations/entities/location.entity';
+import { Organization } from 'src/organizations/entities/organization.entity';
 
 @Table({ tableName: 'characters', timestamps: true, paranoid: true })
 export class Character extends Model {
@@ -54,4 +56,7 @@ export class Character extends Model {
 
   @BelongsToMany(() => Location, () => CharacterLocation)
   locations: Location[];
+
+  @BelongsToMany(() => Organization, () => CharacterOrganization)
+  organizations: Organization[];
 }
