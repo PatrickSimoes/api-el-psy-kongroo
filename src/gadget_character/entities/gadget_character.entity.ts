@@ -15,19 +15,19 @@ import { Character } from 'src/characters/entities/character.entity';
 export class GadgetCharacter extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column(DataType.UUID)
+  @Column(DataType.UUIDV4)
   declare id: string;
 
   @ForeignKey(() => Gadget)
   @Column({
-    type: DataType.UUID,
+    type: DataType.UUIDV4,
     allowNull: false,
   })
   gadgetId: string;
 
   @ForeignKey(() => Character)
   @Column({
-    type: DataType.UUID,
+    type: DataType.UUIDV4,
     allowNull: false,
   })
   characterId: string;
