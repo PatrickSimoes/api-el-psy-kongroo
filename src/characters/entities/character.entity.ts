@@ -10,6 +10,7 @@ import {
   DeletedAt,
   BelongsToMany,
 } from 'sequelize-typescript';
+import { Optional } from 'sequelize';
 import { CharacterEpisode } from 'src/character_episode/entities/character_episode.entity';
 import { CharacterLocation } from 'src/character_location/entities/character_location.entity';
 import { CharacterOrganization } from 'src/character_organization/entities/character_organization.entity';
@@ -19,14 +20,34 @@ import { Gadget } from 'src/gadgets/entities/gadget.entity';
 import { Location } from 'src/locations/entities/location.entity';
 import { Organization } from 'src/organizations/entities/organization.entity';
 
+export interface CharacterAttributes {
+  id: string;
+  name: string;
+  alias?: string;
+  birthday?: Date;
+  age?: number;
+  gender: 'M' | 'F' | 'Other';
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: Date;
+}
+
+export type CharacterCreationAttributes = Optional<
+  CharacterAttributes,
+  'id' | 'alias' | 'birthday' | 'age' | 'createdAt' | 'updatedAt' | 'deletedAt'
+>;
+
 @Table({ tableName: 'characters', timestamps: true, paranoid: true })
-export class Character extends Model {
+export class Character
+  extends Model<CharacterAttributes, CharacterCreationAttributes>
+  implements CharacterAttributes
+{
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column
   declare id: string;
 
-  @Column
+  @Column({ allowNull: false })
   declare name: string;
 
   @Column({ allowNull: true })
@@ -51,17 +72,17 @@ export class Character extends Model {
 
   @DeletedAt
   @Column({ field: 'deleted_at' })
-  declare deletedAt: Date;
+  declare deletedAt?: Date;
 
   @BelongsToMany(() => Episode, () => CharacterEpisode)
-  episodes: Episode[];
+  declare episodes: Episode[];
 
   @BelongsToMany(() => Location, () => CharacterLocation)
-  locations: Location[];
+  declare locations: Location[];
 
   @BelongsToMany(() => Organization, () => CharacterOrganization)
-  organizations: Organization[];
+  declare organizations: Organization[];
 
   @BelongsToMany(() => Gadget, () => GadgetCharacter)
-  gadgets: Gadget[];
+  declare gadgets: Gadget[];
 }

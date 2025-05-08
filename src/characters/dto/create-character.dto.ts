@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsString, IsOptional, IsDateString, IsInt, Min, Max, IsEnum } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+import { CharacterCreationAttributes } from '../entities/character.entity';
 
 export enum Gender {
   M = 'M',
@@ -8,7 +9,9 @@ export enum Gender {
   Other = 'Other',
 }
 
-export class CreateCharacterDto {
+export class CreateCharacterDto
+  implements Omit<CharacterCreationAttributes, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>
+{
   @ApiProperty({
     description: 'Nome completo do personagem',
     example: 'Rick Sanchez',
@@ -32,7 +35,7 @@ export class CreateCharacterDto {
   })
   @IsOptional()
   @IsDateString({}, { message: 'birthday deve ser uma data válida ISO 8601' })
-  birthday?: string;
+  birthday?: Date;
 
   @ApiPropertyOptional({
     description: 'Idade do personagem em anos completos',
