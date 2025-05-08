@@ -18,12 +18,12 @@ import { Episode } from 'src/episodes/entities/episode.entity';
 export class CharacterEpisode extends Model<CharacterEpisode> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.UUIDV4 })
   declare id: string;
 
   @ForeignKey(() => Character)
   @Column({
-    type: DataType.UUID,
+    type: DataType.UUIDV4,
     allowNull: false,
     field: 'character_id',
   })
@@ -31,7 +31,7 @@ export class CharacterEpisode extends Model<CharacterEpisode> {
 
   @ForeignKey(() => Episode)
   @Column({
-    type: DataType.UUID,
+    type: DataType.UUIDV4,
     allowNull: false,
     field: 'episode_id',
   })
