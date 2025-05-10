@@ -60,4 +60,20 @@ export class CharactersService {
     }
     return character;
   }
+
+  async destroy(id: string) {
+    const character = await this.findOne(id);
+
+    if (character === null) {
+      throw new NotFoundException('this character is not faund');
+    }
+
+    const deletedCount = await this.characterModel.destroy({
+      where: { id: character.id },
+    });
+
+    if (deletedCount === 0) {
+      throw new InternalServerErrorException('Falha ao deletar o character');
+    }
+  }
 }
