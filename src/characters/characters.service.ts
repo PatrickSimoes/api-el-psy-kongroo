@@ -8,6 +8,7 @@ import { CreateCharacterDto } from './dto/create-character.dto';
 import { Character } from './entities/character.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import { UniqueConstraintError } from 'sequelize';
+import { UpdateCharacterDto } from './dto/update-character.dto';
 
 @Injectable()
 export class CharactersService {
@@ -58,6 +59,38 @@ export class CharactersService {
     if (!character) {
       throw new NotFoundException(`Character with id "${id}" not found.`);
     }
+    return character;
+  }
+
+  private async findOneOrFail(id: string): Promise<Character> {
+    const character = await this.characterModel.findByPk(id);
+
+    if (!character) {
+      throw new NotFoundException(`Character com id "${id}" não encontrado`);
+    }
+
+    return character;
+  }
+
+  async replace(
+    id: string,
+    dto: CreateCharacterDto,
+  ): Promise<{ entity: Character; created: boolean }> {
+    const existing = await this.characterModel.findByPk(id);
+
+    if (!existing) {
+      const createdEntity = await this.characterModel.create({ id, ...dto });
+      return { entity: createdEntity, created: true };
+    }
+
+    await existing.update(dto);
+    return { entity: existing, created: false };
+  }
+
+  async update(id: string, dto: UpdateCharacterDto): Promise<Character> {
+    const character = await this.findOneOrFail(id);
+
+    await character.update(dto);
     return character;
   }
 
