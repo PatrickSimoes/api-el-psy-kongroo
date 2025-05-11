@@ -14,6 +14,7 @@ import { GadgetCharacterModule } from './gadget_character/gadget_character.modul
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { DatabaseModule } from './database/database.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { DatabaseModule } from './database/database.module';
       isGlobal: true,
       envFilePath: ['.env'],
     }),
+    UsersModule,
     CharactersModule,
     EpisodesModule,
     LocationsModule,
