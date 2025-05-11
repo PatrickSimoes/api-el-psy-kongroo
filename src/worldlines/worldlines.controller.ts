@@ -43,8 +43,7 @@ export class WorldlinesController {
   @ApiConflictResponse({
     description: 'A worldline already exists',
   })
-  // create(@Body() dto: CreateWorldlineDto): Promise<Worldline> {
-  create(@Body() dto: CreateWorldlineDto) {
+  create(@Body() dto: CreateWorldlineDto): Promise<Worldline> {
     return this.worldlinesService.create(dto);
   }
 
