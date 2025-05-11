@@ -75,7 +75,7 @@ export class LocationsController {
     description: 'Location not found',
   })
   findOne(@Param('id') id: string) {
-    return this.locationsService.findOne(+id);
+    return this.locationsService.findOne(id);
   }
 
   @Patch(':id')
@@ -95,7 +95,7 @@ export class LocationsController {
     description: 'Location not found',
   })
   update(@Param('id') id: string, @Body() updateLocationDto: UpdateLocationDto) {
-    return this.locationsService.update(+id, updateLocationDto);
+    return this.locationsService.update(id, updateLocationDto);
   }
 
   @Delete(':id')
@@ -112,6 +112,6 @@ export class LocationsController {
     description: 'Location not found',
   })
   remove(@Param('id') id: string) {
-    return this.locationsService.remove(+id);
+    return this.locationsService.remove(id);
   }
 }

@@ -75,7 +75,7 @@ export class GadgetsController {
     description: 'Gadget not found',
   })
   findOne(@Param('id') id: string) {
-    return this.gadgetsService.findOne(+id);
+    return this.gadgetsService.findOne(id);
   }
 
   @Patch(':id')
@@ -95,7 +95,7 @@ export class GadgetsController {
     description: 'Gadget not found',
   })
   update(@Param('id') id: string, @Body() updateGadgetDto: UpdateGadgetDto) {
-    return this.gadgetsService.update(+id, updateGadgetDto);
+    return this.gadgetsService.update(id, updateGadgetDto);
   }
 
   @Delete(':id')
@@ -112,6 +112,6 @@ export class GadgetsController {
     description: 'Gadget not found',
   })
   remove(@Param('id') id: string) {
-    return this.gadgetsService.remove(+id);
+    return this.gadgetsService.remove(id);
   }
 }

@@ -76,7 +76,7 @@ export class WorldlinesController {
   })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.worldlinesService.findOne(+id);
+    return this.worldlinesService.findOne(id);
   }
 
   @ApiOperation({
@@ -97,7 +97,7 @@ export class WorldlinesController {
   })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateWorldlineDto: UpdateWorldlineDto) {
-    return this.worldlinesService.update(+id, updateWorldlineDto);
+    return this.worldlinesService.update(id, updateWorldlineDto);
   }
 
   @ApiOperation({
@@ -114,6 +114,6 @@ export class WorldlinesController {
   })
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.worldlinesService.remove(+id);
+    return this.worldlinesService.remove(id);
   }
 }

@@ -19,16 +19,16 @@ export class EpisodeWorldlineController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.episodeWorldlineService.findOne(+id);
+    return this.episodeWorldlineService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEpisodeWorldlineDto: UpdateEpisodeWorldlineDto) {
-    return this.episodeWorldlineService.update(+id, updateEpisodeWorldlineDto);
+    return this.episodeWorldlineService.update(id, updateEpisodeWorldlineDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.episodeWorldlineService.remove(+id);
+    return this.episodeWorldlineService.remove(id);
   }
 }

@@ -75,7 +75,7 @@ export class OrganizationsController {
     description: 'Organization not found',
   })
   findOne(@Param('id') id: string) {
-    return this.organizationsService.findOne(+id);
+    return this.organizationsService.findOne(id);
   }
 
   @Patch(':id')
@@ -95,7 +95,7 @@ export class OrganizationsController {
     description: 'Organization not found',
   })
   update(@Param('id') id: string, @Body() updateOrganizationDto: UpdateOrganizationDto) {
-    return this.organizationsService.update(+id, updateOrganizationDto);
+    return this.organizationsService.update(id, updateOrganizationDto);
   }
 
   @Delete(':id')
@@ -112,6 +112,6 @@ export class OrganizationsController {
     description: 'Organization not found',
   })
   remove(@Param('id') id: string) {
-    return this.organizationsService.remove(+id);
+    return this.organizationsService.remove(id);
   }
 }

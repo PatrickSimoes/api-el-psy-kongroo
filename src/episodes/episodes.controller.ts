@@ -75,7 +75,7 @@ export class EpisodesController {
     description: 'Episode not found',
   })
   findOne(@Param('id') id: string) {
-    return this.episodesService.findOne(+id);
+    return this.episodesService.findOne(id);
   }
 
   @Patch(':id')
@@ -95,7 +95,7 @@ export class EpisodesController {
     description: 'Episode not found',
   })
   update(@Param('id') id: string, @Body() updateEpisodeDto: UpdateEpisodeDto) {
-    return this.episodesService.update(+id, updateEpisodeDto);
+    return this.episodesService.update(id, updateEpisodeDto);
   }
 
   @Delete(':id')
@@ -112,6 +112,6 @@ export class EpisodesController {
     description: 'Episode not found',
   })
   remove(@Param('id') id: string) {
-    return this.episodesService.remove(+id);
+    return this.episodesService.remove(id);
   }
 }

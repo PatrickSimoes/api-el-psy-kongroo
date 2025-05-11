@@ -19,16 +19,16 @@ export class CharacterOrganizationController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.characterOrganizationService.findOne(+id);
+    return this.characterOrganizationService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCharacterOrganizationDto: UpdateCharacterOrganizationDto) {
-    return this.characterOrganizationService.update(+id, updateCharacterOrganizationDto);
+    return this.characterOrganizationService.update(id, updateCharacterOrganizationDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.characterOrganizationService.remove(+id);
+    return this.characterOrganizationService.remove(id);
   }
 }

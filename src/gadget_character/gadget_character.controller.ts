@@ -19,16 +19,16 @@ export class GadgetCharacterController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.gadgetCharacterService.findOne(+id);
+    return this.gadgetCharacterService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGadgetCharacterDto: UpdateGadgetCharacterDto) {
-    return this.gadgetCharacterService.update(+id, updateGadgetCharacterDto);
+    return this.gadgetCharacterService.update(id, updateGadgetCharacterDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.gadgetCharacterService.remove(+id);
+    return this.gadgetCharacterService.remove(id);
   }
 }
