@@ -18,8 +18,8 @@ import { Character } from 'src/characters/entities/character.entity';
 })
 export class Organization extends Model<Organization> {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @AllowNull(false)

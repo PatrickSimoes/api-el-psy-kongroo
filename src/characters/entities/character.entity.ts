@@ -22,7 +22,7 @@ import { Organization } from 'src/organizations/entities/organization.entity';
 @Table({ tableName: 'characters', timestamps: true, paranoid: true })
 export class Character extends Model {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
+  @Default(DataType.UUID)
   @Column
   declare id: string;
 

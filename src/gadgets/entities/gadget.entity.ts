@@ -18,8 +18,8 @@ import { GadgetCharacter } from 'src/gadget_character/entities/gadget_character.
 })
 export class Gadget extends Model<Gadget> {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @AllowNull(false)

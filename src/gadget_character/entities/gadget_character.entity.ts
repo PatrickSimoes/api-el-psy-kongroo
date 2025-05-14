@@ -14,20 +14,20 @@ import { Character } from 'src/characters/entities/character.entity';
 @Table
 export class GadgetCharacter extends Model {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @ForeignKey(() => Gadget)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   gadgetId: string;
 
   @ForeignKey(() => Character)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   characterId: string;

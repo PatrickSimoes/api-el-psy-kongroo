@@ -20,8 +20,8 @@ import { Worldline } from 'src/worldlines/entities/worldline.entity';
 })
 export class Episode extends Model<Episode> {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @AllowNull(false)

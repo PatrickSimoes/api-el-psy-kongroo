@@ -3,8 +3,8 @@ import { Table, Column, Model, PrimaryKey, Default, DataType, Unique } from 'seq
 @Table({ tableName: 'users', timestamps: true })
 export class User extends Model<User> {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @Column({

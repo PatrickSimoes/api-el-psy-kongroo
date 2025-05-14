@@ -14,20 +14,20 @@ import { Organization } from 'src/organizations/entities/organization.entity';
 @Table
 export class CharacterOrganization extends Model {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
+  @Default(DataType.UUID)
   @Column
   declare id: string;
 
   @ForeignKey(() => Character)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   characterId: number;
 
   @ForeignKey(() => Organization)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   organizationId: number;

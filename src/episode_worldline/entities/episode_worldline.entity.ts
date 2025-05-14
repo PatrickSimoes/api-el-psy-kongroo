@@ -14,20 +14,20 @@ import { Worldline } from 'src/worldlines/entities/worldline.entity';
 @Table
 export class EpisodeWorldline extends Model {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @ForeignKey(() => Episode)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   episodeId: string;
 
   @ForeignKey(() => Worldline)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     allowNull: false,
   })
   worldlineId: string;

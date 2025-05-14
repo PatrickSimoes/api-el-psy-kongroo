@@ -18,8 +18,8 @@ import { Character } from 'src/characters/entities/character.entity';
 })
 export class Location extends Model<Location> {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUIDV4)
+  @Default(DataType.UUID)
+  @Column(DataType.UUID)
   declare id: string;
 
   @AllowNull(false)
